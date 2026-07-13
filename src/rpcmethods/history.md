@@ -269,9 +269,13 @@ only appending to the log files and never modifying them. Logs propagation is
 then performed by copying appended data from existing files and new files.
 
 Files are exposed as read only [file nodes](./file.md). The name of the file
-must be date and time of the first record in the file in ISO-8601 format without
-timezone and with seconds precision with ".log3" extension. The new files must
-be created with date and time after the last log even if system clock is right
+must be date and time of the first record in the file in ISO-8601 format with
+the following exceptions. There are no `:` characters in the name due
+to the limitations of some file systems, `-` characters are use instead.
+Timezone is also not present and the file name has seconds precision
+with ".log3" extension. The format is therefore `YYYY-MM-DDTHH-MM-SS.log3`, an
+example of such file name is `2026-07-01T14-23-08.log3` The new files must be
+created with date and time after the last log even if system clock is right
 now set before that time. If system time is before the latest log file name then
 latest log file name must be used with one second increased (to get unique file
 name). The date and time recorded in the log file is still the system time, the
