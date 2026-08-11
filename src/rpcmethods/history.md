@@ -298,6 +298,7 @@ The provided value is *List* with the following fields in the sequence:
 | sinceID   | Int      | ID for the record that is the oldest one but not older than `Since`.
 | untilID   | Int      | ID for the record that is the newest one but not newer than `Until`.
 | untilDate | DateTime | Date and time of the `untilID` record interpreted relative to `Now`.
+| span      | Int      | Keep record span that is described in `.history/**/.records/*:span`. It is provided to reduce need to call both methods in case caller wants to assemble snapshot.
 
 All date and time is real time relative to the `Now`. The record times are
 interpreted using logic described in [Time management in
