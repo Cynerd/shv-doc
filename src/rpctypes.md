@@ -447,18 +447,6 @@ descriptions.
   ```
   [i:smallest,i:biggest,i(1,):span]
   ```
-* `!historyDateSpanP` is parameter of
-  [`.history/**/.records/*:dateSpan`
-  method](./rpcmethods/history.md#historyrecordsdatespan). Its expanded form is:
-  ```
-  i{t|n:since:1,t|n:until,t|n:now}
-  ```
-* `!historyDateSpanR` is result of
-  [`.history/**/.records/*:dateSpan`
-  method](./rpcmethods/history.md#historyrecordsdatespan). Its expanded form is:
-  ```
-  [i:sinceID,i:untilID.t:untilDate]
-  ```
 
 ## Grammar representation
 

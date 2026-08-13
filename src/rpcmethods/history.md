@@ -268,46 +268,6 @@ achieved by creating keep records that are copy of older ones when no signal for
 them is received for some time. It allows of fetching the full log state without
 going through the whole history.
 
-#### `.history/**/.records/*:dateSpan`
-
-| Name       | SHV Path                 | Flags  | Param Type          | Result Type         | Access  |
-|------------|--------------------------|--------|---------------------|---------------------|---------|
-| `dateSpan` | `.history/**/.records/*` | Getter | `!historyDateSpanP` | `!historyDateSpanR` | Service |
-
-This is an optional method that allows caller to get the boundaries for the
-record IDs based on the provided date and time span. It provides a way for the
-clients to seek logs on the devices that otherwise do not support the `getLog`
-method without having to fetch all logs to fully assemble the time context of
-the logs.
-
-The parameter is an *IMap* containing the following fields:
-
-| Key   | Name   | Type           | Description
-| ----- | ------ | ------         | ------------------------
-| 1     | Since  | DateTime\|Null | The oldest record time to be located. If it is Null, then the oldest record is provided.
-| 2     | Until  | DateTime\|Null | The newest record time to be  located. If it is Null, then the newest record is provided.
-| 3     | Now    | DateTime\|Null | The current time the log should be interpreted against. If it is Null, then the device's current time is used.
-
-Be aware that contrary to the `getLog` method the `Since` must always precede
-`Until`.
-
-The provided value is *List* with the following fields in the sequence:
-
-| Name      | Type     | Description
-| ------    | ------   | -------
-| sinceID   | Int      | ID for the record that is the oldest one but not older than `Since`.
-| untilID   | Int      | ID for the record that is the newest one but not newer than `Until`.
-| untilDate | DateTime | Date and time of the `untilID` record interpreted relative to `Now`.
-| span      | Int      | Keep record span that is described in `.history/**/.records/*:span`. It is provided to reduce need to call both methods in case caller wants to assemble snapshot.
-
-All date and time is real time relative to the `Now`. The record times are
-interpreted using logic described in [Time management in
-logs](#time-management-in-logs) chapter. The difference between `untilDate`
-and `timestamp` of the untilID record is the time difference to be applied to
-all records up to *timeJump*, or *timeAbiq*, or sinceID record. The time
-modifying records must be considered as described in the time management
-chapter.
-
 ### `.history/**/.files/*`
 
 These nodes provide file based logs. The systematic log access is ensured by
