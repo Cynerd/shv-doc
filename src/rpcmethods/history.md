@@ -257,16 +257,21 @@ Fetch that is outside of the valid record ID range must not provide error.
 This allows fetch of boundaries for the record IDs and also the keep record
 range.
 
-This method provides three integers in a list. The first *Int* is the smallest
-valid record ID, the second *Int* is the biggest valid record ID plus one (to
-allow case when there are no records to be signaled with same value as the first
-record) and the third *Int* is the keep record span.
-
-The keep record span is range of records where all combinations of SHV path,
-signal name and signal's associated method name in the log are present. That is
-achieved by creating keep records that are copy of older ones when no signal for
-them is received for some time. It allows of fetching the full log state without
-going through the whole history.
+This method provides List with the following items:
+* The first item is *Int* with the smallest valid record ID
+* The second item is *Int* with the largest valid record ID plus one (to allow
+  case when there are no records to be signaled with same value as the smallest
+  ID)
+* The third item is positive-nonzero *Int* with keep record span. This is range
+  of the records where all combinations of SHV path, signal name and signal's
+  associated method name in the log are present. That is achieved by creating
+  keep records that are copy of older ones when no signal for them is received
+  for some time. It allows of fetching the full log state without going through
+  the whole history. 
+* The fourth optional item is *Int* with ID of the newest *timeJump* or
+  *timeAbiq* record. In combination with *idref* in
+  `.history/**/.records/*:fetch` method this provides a way for following a real
+  time modifications in the records.
 
 ### `.history/**/.files/*`
 
