@@ -239,10 +239,12 @@ Every record is *IMap* with following fields:
   This must always be the closest matching record. For *normal* and *keep*
   records this is matching combination of *path*, *signal*, *source*, and
   *accessLevel*. For *timeJump* and *timeAbiq* records, this is the closest older
-  record of either type. The offset is one less and thus `0` is the previous
-  *id* relative to the ID of this record (`id - idref - 1`). The fields *type*,
-  *path*, *signal*, *source*, and *accessLevel* can be left out in case
-  the referenced record is in the same list (same method invocation).
+  record of either type. The fields *type*, *path*, *signal*, *source*, and
+  *accessLevel* can be left out in case the referenced record is in the same
+  list (same method invocation). The value `0` is special (points to itself) and
+  can be optionally used to signal that this is the oldest record of this type
+  in the log.
+
 * `60`(*timeJump*): *Int* with number of seconds of time skip. This is used with
   *type* being `3` (*timeJump*).
 
