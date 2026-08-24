@@ -273,6 +273,18 @@ This method provides List with the following items:
   `.history/**/.records/*:fetch` method this provides a way for following a real
   time modifications in the records.
 
+#### `.history/**/.records/*:contains`
+
+| Name       | SHV Path                 | Flags  | Param Type | Result Type | Access  |
+|------------|--------------------------|--------|------------|-------------|---------|
+| `contains` | `.history/**/.records/*` | Getter | `s`        | `b`         | Service |
+
+Check if log contains records of given RPC RI. This allows generic tools to
+decide on which log should be fetched.
+
+The argument must be valid [signal RI](../rpcri.md) and the result is boolean
+informing caller if such signals are in the log.
+
 ### `.history/**/.files/*`
 
 These nodes provide file based logs. The systematic log access is ensured by
